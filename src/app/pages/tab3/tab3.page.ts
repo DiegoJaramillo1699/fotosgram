@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ReturnStatement } from '@angular/compiler';
 import { ToastController } from '@ionic/angular';
 import { UiServiceService } from '../../services/ui-service.service';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-tab3',
@@ -16,7 +17,8 @@ export class Tab3Page implements OnInit {
 usuario: Usuario = {};
 
   constructor(private usuarioService: UsuarioService,
-    private uiService: UiServiceService) {}
+    private uiService: UiServiceService,
+    private postService: PostsService) {}
 
   ngOnInit(){
 
@@ -43,6 +45,12 @@ usuario: Usuario = {};
       //toast con el error
       this.uiService.presentToast("No se pudo actualizar el usuario");
     }
+  }
+
+
+  logout(){
+    this.postService.paginaPosts = 0;
+    this.usuarioService.logout();
   }
 
   
